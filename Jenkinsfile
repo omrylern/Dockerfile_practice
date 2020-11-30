@@ -16,7 +16,9 @@ pipeline {
     }
     stage("Image Build") {
       steps{
-        sh "docker build --tag website:${commitID} ."
+        sh """
+        docker build --tag website:${commitID} .
+        """
         
       }
     }
