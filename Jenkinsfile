@@ -3,7 +3,7 @@ pipeline {
   agent any
   
   stages {
-    stage("Get design") {
+    stage("Get Design") {
       steps{
         script {
           if (fileExists('startbootstrap-creative')) {
@@ -15,6 +15,15 @@ pipeline {
           }
         }
       }
+    }
+    stage("Image Build") {
+      sh "docker build --tag website:${commitID}"
+    }
+    stage("Run container") {
+      sh """
+      docker ps -a | grep website && docker rm -f website 
+      sudo docker run --name website -p 8080:80 -d website:${commitID}
+      """
     }
   }
 }
