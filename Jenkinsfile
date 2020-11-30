@@ -7,7 +7,7 @@ pipeline {
       steps{
         scipt{
           dir("startbootstrap-creative")
-          if(!FileExist("/")) {
+          if (!FileExist("/")) {
             sh "git clone https://github.com/StartBootstrap/startbootstrap-creative.git"
           }
         }
