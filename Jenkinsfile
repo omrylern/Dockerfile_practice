@@ -21,7 +21,7 @@ pipeline {
     }
     stage("Run container") {
       sh """
-      docker ps -a | grep website && docker rm -f website 
+      sudo docker ps -a | grep website && sudo docker rm -f website 
       sudo docker run --name website -p 8080:80 -d website:${commitID}
       """
     }
