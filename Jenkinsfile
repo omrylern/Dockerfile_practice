@@ -5,9 +5,11 @@ pipeline {
   stages {
     stage("Get design") {
       steps{
-        dir("startbootstrap-creative")
-        if(!FileExist("/")) {
-          sh "git clone https://github.com/StartBootstrap/startbootstrap-creative.git"
+        scipt{
+          dir("startbootstrap-creative")
+          if(!FileExist("/")) {
+            sh "git clone https://github.com/StartBootstrap/startbootstrap-creative.git"
+          }
         }
       }
     }
