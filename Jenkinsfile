@@ -4,13 +4,12 @@ pipeline {
   
   stages {
     stage("Get design") {
-      def exists = fileExists 'startbootstrap-creative'
       steps{
         script {
-          if (exists) {
-            echo 'Yes'
+          if (fileExists('startbootstrap-creative')) {
+              echo 'Yes'
           } else {
-            echo 'No'
+              echo 'No'
           }
         }
         sh "git clone https://github.com/StartBootstrap/startbootstrap-creative.git"
