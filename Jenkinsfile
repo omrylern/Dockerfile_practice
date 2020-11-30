@@ -7,12 +7,11 @@ pipeline {
       steps{
         script {
           if (fileExists('startbootstrap-creative')) {
-              echo 'Yes'
+              echo 'Design already exist'
           } else {
-              echo 'No'
+              sh "git clone https://github.com/StartBootstrap/startbootstrap-creative.git"
           }
         }
-        sh "git clone https://github.com/StartBootstrap/startbootstrap-creative.git"
       }
     }
   }
