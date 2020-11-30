@@ -16,11 +16,12 @@ pipeline {
     }
     stage("Image Build") {
       steps{
-        sh """
-        commitId = sh(returnStdout: true, script: 'git rev-parse HEAD')
-        docker build --tag website:${commitID} .
-        """
-        
+        script {
+          sh """
+          commitId = sh(returnStdout: true, script: 'git rev-parse HEAD')
+          docker build --tag website:${commitID} .
+          """
+        }
       }
     }
     stage("Run container") {
