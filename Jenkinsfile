@@ -17,13 +17,17 @@ pipeline {
       }
     }
     stage("Image Build") {
-      sh "docker build --tag website:${commitID}"
+      steps{ 
+        sh "docker build --tag website:${commitID}"
+      }
     }
     stage("Run container") {
-      sh """
-      sudo docker ps -a | grep website && sudo docker rm -f website 
-      sudo docker run --name website -p 8080:80 -d website:${commitID}
-      """
+      steps {
+        sh """
+        sudo docker ps -a | grep website && sudo docker rm -f website 
+        sudo docker run --name website -p 8080:80 -d website:${commitID}
+        """
+      }
     }
   }
 }
