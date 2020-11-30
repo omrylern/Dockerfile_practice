@@ -4,8 +4,8 @@ pipeline {
   
   stages {
     stage("Get design") {
+      def exists = fileExists 'startbootstrap-creative'
       steps{
-        def exists = fileExists 'startbootstrap-creative'
         script {
           if (exists) {
             echo 'Yes'
