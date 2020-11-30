@@ -8,7 +8,8 @@ pipeline {
         script {
           if (fileExists('startbootstrap-creative')) {
               echo 'Design already exist'
-              echo '${env.GIT_COMMIT}'
+              commitId = sh(returnStdout: true, script: 'git rev-parse HEAD')
+              echo '${commitId}'
           } else {
               sh "git clone https://github.com/StartBootstrap/startbootstrap-creative.git"
           }
