@@ -20,7 +20,7 @@ pipeline {
       steps{
         script {
           commitId = sh(returnStdout: true, script: 'git rev-parse HEAD')
-          sh "docker build --tag website:${commitID}"
+          sh "docker build --tag website:${commitID}" .
         }
       }
     }
