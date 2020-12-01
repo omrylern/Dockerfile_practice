@@ -19,7 +19,7 @@ pipeline {
         script {
           commitID = sh(returnStdout: true, script: 'git rev-parse HEAD')
           sh """
-          sudo docker build --tag website:${commitID} .
+          sudo docker build -t website:${commitID} ./
           """
         }
       }
