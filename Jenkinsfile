@@ -17,9 +17,9 @@ pipeline {
     stage("Image Build") {
       steps{
         script {
+          commitID = sh(returnStdout: true, script: 'git rev-parse HEAD')
           sh """
-          commitId = sh(returnStdout: true, script: 'git rev-parse HEAD')
-          docker build --tag website:${commitID} .
+          sudo docker build --tag website:${commitID} .
           """
         }
       }
